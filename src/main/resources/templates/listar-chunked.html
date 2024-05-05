@@ -1,0 +1,30 @@
+<html>
+
+<head>
+	<title th:text="${titulo}"></title>
+</head>
+
+<body>
+	<h1 th:text="${titulo}"></h1>
+
+	<table>
+		<thead>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Precio</th>
+			<th>Fecha</th>
+		</thead>
+
+		<tbody>
+			<tr th:each="productos: ${productos}">
+				<td th:text="${productos.id}"></td>
+				<td th:text="${productos.nombre}"></td>
+				<td th:text="${productos.precio}"></td>
+				<td th:text="${productos.createAt}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>

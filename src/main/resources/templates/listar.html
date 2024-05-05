@@ -1,0 +1,40 @@
+<html>
+
+<head>
+	<title th:text="${titulo}"></title>
+</head>
+
+<body>
+	
+	<div th:if="${param.error != null}" th:text="${param.error}">	</div>
+	<div th:if="${param.success != null}" th:text="${param.success}">	</div>
+	
+	<h1 th:text="${titulo}"></h1>
+	<a th:href="@{/form}" >Crear+</a>
+	<table>
+		<thead>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Precio</th>
+			<th>Fecha</th>
+			<th>Categoria</th>
+			<th></th>
+			<th></th>
+		</thead>
+
+		<tbody>
+			<tr th:each="productos: ${productos}">
+				<td><a th:href="@{/ver/} + ${productos.id}" th:text="${#strings.abbreviate(productos.id, 10)}"></a></td>
+				<td th:text="${productos.nombre}"></td>
+				<td th:text="${#numbers.formatCurrency(productos.precio)}"></td>
+				<td th:text="${#calendars.format(productos.createAt, 'dd/MM/yyyy')}"></td>
+				<td th:text="${productos.categoria.nombre}"></td>
+				<td><a th:href="@{/form/} + ${productos.id}">Editar</a></td>
+				<td><a th:href="@{/eliminar/} + ${productos.id}" onclick="return confirm('Esta seguro que desea eliminar?')">Eliminar</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>
